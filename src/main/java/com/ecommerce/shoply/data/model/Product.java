@@ -3,6 +3,7 @@ package com.ecommerce.shoply.data.model;
 
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +23,9 @@ public class Product {
     @Column(length = 500)
     private String details;
     @ElementCollection
+    @ToString.Exclude
     private List<String> imageUrl;
     @OneToMany
+    @ToString.Exclude
     private List<Feedback> listOfFeedback;
 }
