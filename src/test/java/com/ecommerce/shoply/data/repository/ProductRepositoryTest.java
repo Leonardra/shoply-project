@@ -1,6 +1,5 @@
 package com.ecommerce.shoply.data.repository;
 
-import com.ecommerce.shoply.data.model.Currency.*;
 import com.ecommerce.shoply.data.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -72,4 +71,11 @@ class ProductRepositoryTest {
         productRepositoryImpl.deleteById(110L);
         assertThat(productRepositoryImpl.findById(110L).orElse(null)).isNull();
     }
+
+    public void updateProduct(){
+
+    }
+//        log.info("Product before saving -> {}", product);
+//        Product savedProduct = productRepositoryImpl.update(product));
+//    }
 }
