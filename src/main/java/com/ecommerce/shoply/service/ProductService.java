@@ -1,7 +1,8 @@
 package com.ecommerce.shoply.service;
 
+import com.ecommerce.shoply.data.dto.ProductUpdateForm;
 import com.ecommerce.shoply.data.model.Product;
-import org.thymeleaf.expression.Lists;
+import com.ecommerce.shoply.web.exceptions.ProductDoesNotExistException;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ public interface ProductService {
     Product findById(Long id);
     void deleteById(Long id);
     List<Product> saveAll(List<Product> products);
-
+    Product update(Long productId, ProductUpdateForm productUpdate) throws ProductDoesNotExistException;
 }

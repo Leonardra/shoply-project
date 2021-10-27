@@ -1,8 +1,10 @@
 package com.ecommerce.shoply.web.controller;
 
 
+import com.ecommerce.shoply.data.dto.ProductUpdateForm;
 import com.ecommerce.shoply.data.model.Product;
 import com.ecommerce.shoply.service.ProductService;
+import com.ecommerce.shoply.web.exceptions.ProductDoesNotExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +31,17 @@ public class ProductController {
         return productServiceImpl.save(product);
     }
 
-
+    @PatchMapping("/{productId}")
+    public ResponseEntity<?> update(@PathVariable Long productId, @RequestBody ProductUpdateForm productUpdate){
+        Product product = null;
+        try {
+            product = productServiceImpl.update(productId,productUpdate);
+        } catch (ProductDoesNotExistException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body(product);
+    }
     @PostMapping("/all-products")
     public List<Product> saveAll(@RequestBody List<Product> products){
         log.info("Product request -> {}", products);
